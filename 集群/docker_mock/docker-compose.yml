@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+ redis_01:
+  build: ./
+  restart: always
+  volumes:
+   - ./8001/data:/data
+  environment:
+   - REDIS_PORT=8001
+  ports:
+    - '8001:8001'       #服务端口
+    - '18001:18001'     #集群端口
+
+ redis_02:
+  build: ./
+  restart: always
+  volumes:
+   - ./8002/data:/data
+  environment:
+   - REDIS_PORT=8002
+  ports:
+    - '8002:8002'
+    - '18002:18002'
+
+ redis_03:
+  build: ./
+  restart: always
+  volumes:
+   - ./8003/data:/data
+  environment:
+   - REDIS_PORT=8003
+  ports:
+    - '8003:8003'
+    - '18003:18003'
